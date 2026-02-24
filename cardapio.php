@@ -1,0 +1,520 @@
+<?php
+
+
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lanches & Bebidas - Delivery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.6.0/dist/ol.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-burger"></i> Cardápio
+      </a>
+      <button class="navbar-toggler" id="menu-toggle" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="navbar-menu" id="navbar-menu">
+        <ul class="navbar-nav">
+          <li>
+            <a class="nav-link" href="index.html">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 me-2" style="width: 1.25rem; height: 1.25rem; vertical-align: middle; display: inline-block;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+              </svg>Voltar
+            </a>
+          </li>
+          <li><a class="nav-link" href="#cardapio"><i class="fas fa-utensils me-2"></i>Cardápio</a></li>
+          <li>
+            <a class="nav-link btn-cart" href="#" id="link-pedidos">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 me-2" style="width: 1.25rem; height: 1.25rem; vertical-align: middle; display: inline-block;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+              </svg>Pedidos (<span id="contador-pedidos">0</span>)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <section id="cardapio" class="menu-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2 class="section-title">Nosso Cardápio</h2>
+        <p class="lead">Sabores incríveis que você vai amar! 😋</p>
+      </div>
+      <div class="search-bar mb-4">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+          <input type="text" id="input-pesquisa" class="form-control" placeholder="Buscar lanches (ex: X-Burger, Batata Frita...)">
+        </div>
+      </div>
+      <div class="grid-3" id="lista-produtos"> 
+        <div class="card">
+          <span class="promo-badge promo-discount">-25% OFF</span>
+          <img src="https://ogimg.infoglobo.com.br/rioshow/25033674-ea4-3ac/FT1086A/smash-burger.jpg" class="card-img" alt="X-Burger">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-hamburger text-warning me-2"></i>X-Burger</h5>
+            <p class="card-text">Pão, carne suculenta, queijo derretido, alface e tomate fresco.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 15,00</span>
+              <p class="price">R$ 11,25</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-ingredientes="Pão, carne suculenta, queijo derretido, alface e tomate fresco." data-desconto="-25% OFF"  data-item="X-Burger" data-preco="11.25">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <span class="promo-badge">🔥 Popular</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc5AE6ISXacmZb5Q0IT3YdCOjRDmqJK_eExBU9uKKbGuco09KroX7JVyw&s=10" class="card-img" alt="Cheeseburger">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-cheese text-warning me-2"></i>Cheeseburger</h5>
+            <p class="card-text">Pão, carne, queijo duplo e molho especial da casa.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 20,00</span>
+              <p class="price">R$ 18,00</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Cheeseburger" data-preco="18.00"  data-ingredientes="Pão, carne, queijo duplo e molho especial da casa."  data-desconto="0%" >
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge promo-discount">-15% OFF</span>
+          <img src="https://external-preview.redd.it/Q0w-a8gsUB6RQVvriRu6-JL-ESYRj1uyRcM46aOsOl4.jpg?width=1080&crop=smart&auto=webp&s=c95c64bc587cf1362185def71b0253c7b35e1727" class="card-img" alt="Hot Dog">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-hotdog text-warning me-2"></i>Hot Dog</h5>
+            <p class="card-text">Pão, salsicha, molho, batata palha e queijo.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 12,00</span>
+              <p class="price">R$ 10,20</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Hot Dog" data-preco="10.20" data-ingredientes="Pão, salsicha, molho, batata palha e queijo." data-desconto="-15% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <img src="https://static.itdg.com.br/images/1200-630/16976699d08c8e6cd92db601741e0038/353026-original.jpg" class="card-img" alt="Batata Frita">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-fire text-warning me-2"></i>Batata Frita</h5>
+            <p class="card-text">Porção crocante de batata frita com sal e molho.</p>
+            <p class="price">R$ 10,00</p>
+            <button class="btn btn-comprar w-100" data-item="Batata Frita" data-preco="10.00" data-ingredientes="Porção crocante de batata frita com sal e molho."   data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge promo-discount">-30% OFF</span>
+          <img src="https://st3.depositphotos.com/1063437/16407/i/450/depositphotos_164071266-stock-photo-bottles-and-cans-of-assorted.jpg" class="card-img" alt="Refrigerante">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bottle-droplet text-warning me-2"></i>Refrigerante</h5>
+            <p class="card-text">Lata gelada (Coca, Guaraná, Fanta ou Sprite).</p>
+            <div class="price-container">
+              <span class="price-old">R$ 6,00</span>
+              <p class="price">R$ 4,20</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Refrigerante" data-preco="4.20" data-ingredientes="Lata gelada (Coca, Guaraná, Fanta ou Sprite)."   data-desconto="-30% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge">⭐ Novidade</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBaAXWbaPCrBWtlfcc00dlSA68mgvLGIRnKEU3que76JL0osVVMAuSaTK-&s=10" class="card-img" alt="Milkshake">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-ice-cream text-warning me-2"></i>Milkshake</h5>
+            <p class="card-text">250ml - Chocolate, morango ou baunilha.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 16,00</span>
+              <p class="price">R$ 14,00</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Milkshake" data-preco="14.00" data-ingredientes="250ml - Chocolate, morango ou baunilha." data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge promo-discount">-20% OFF</span>
+          <img src="https://img77.uenicdn.com/image/upload/v1568110815/category/shutterstock_553665772.jpg" class="card-img" alt="X-Salada">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-leaf text-warning me-2"></i>X-Salada</h5>
+            <p class="card-text">Pão, hambúrguer, queijo, alface, tomate, cebola e maionese especial.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 18,50</span>
+              <p class="price">R$ 14,80</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="X-Salada" data-preco="14.80" data-ingredientes="Pão, hambúrguer, queijo, alface, tomate, cebola e maionese especial." data-desconto="-20% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge">🔥 Mais pedido</span>
+          <img src="https://smokinandgrillinwitab.com/wp-content/uploads/2025/02/iStock-2188707691-scaled.jpg" class="card-img" alt="Onion Rings">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-circle-notch text-warning me-2"></i>Onion Rings</h5>
+            <p class="card-text">Anéis de cebola empanados e crocantes, servidos com molho da casa.</p>
+            <p class="price">R$ 9,00</p>
+            <button class="btn btn-comprar w-100" data-item="Onion Rings" data-preco="9.00" data-ingredientes="Anéis de cebola empanados e crocantes, servidos com molho da casa." data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge promo-discount">-18% OFF</span>
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=123abc456def" class="card-img" alt="Veggie Burger">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-seedling text-warning me-2"></i>Veggie Burger</h5>
+            <p class="card-text">Hambúrguer de grão-de-bico, queijo veg, alface e molho de tahine.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 19,00</span>
+              <p class="price">R$ 15,58</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Veggie Burger" data-preco="15.58" data-ingredientes="Hambúrguer de grão-de-bico, queijo veg, alface e molho de tahine." data-desconto="-18% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <img src="https://sabores-new.s3.amazonaws.com/public/2024/11/empanado-de-frango-1024x494.jpg" class="card-img" alt="Nuggets de Frango">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-drumstick-bite text-warning me-2"></i>Nuggets de Frango</h5>
+            <p class="card-text">Porção com 8 unidades de nuggets crocantes + 2 molhos à escolha.</p>
+            <p class="price">R$ 13,50</p>
+            <button class="btn btn-comprar w-100" data-item="Nuggets de Frango" data-preco="13.50" data-ingredientes="Porção com 8 unidades de nuggets crocantes + 2 molhos à escolha." data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge promo-discount">-22% OFF</span>
+          <img src="https://receitadaboa.com.br/wp-content/uploads/2024/08/Wrap-integral-de-frango-com-legumes.jpg" class="card-img" alt="Wrap de Frango">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bread-slice text-warning me-2"></i>Wrap de Frango</h5>
+            <p class="card-text">Tortilla recheada com frango grelhado, folhas, cenoura e molho cítrico.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 16,00</span>
+              <p class="price">R$ 12,48</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Wrap de Frango" data-preco="12.48"  data-ingredientes="Tortilla recheada com frango grelhado, folhas, cenoura e molho cítrico." data-desconto="-22% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge">⭐ Tradicional</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcFIZhG5Y7OQGJNbdg3rqWoCtUSoY6JqC2Zw&usqp=CAU" class="card-img" alt="Coxinha">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-stroopwafel text-warning me-2"></i>Coxinha</h5>
+            <p class="card-text">Coxinha de frango cremoso, empanada e frita na medida.</p>
+            <p class="price">R$ 6,50</p>
+            <button class="btn btn-comprar w-100" data-item="Coxinha" data-preco="6.50" data-ingredientes="Coxinha de frango cremoso, empanada e frita na medida."  data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge promo-discount">-28% OFF</span>
+          <img src="https://minhasreceitinhas.com.br/wp-content/uploads/2023/05/pastel-de-feira-de-queijo.jpg" class="card-img" alt="Pastel de Queijo">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-cheese text-warning me-2"></i>Pastel de Queijo</h5>
+            <p class="card-text">Pastel frito, massa crocante e recheio de queijo cremoso.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 8,50</span>
+              <p class="price">R$ 6,12</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Pastel de Queijo" data-preco="6.12"  data-ingredientes="Pastel frito, massa crocante e recheio de queijo cremoso." data-desconto="-28% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/04/94/25/ff/getlstd-property-photo.jpg?w=900&h=500&s=1" class="card-img" alt="Espetinho (Kebab)">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bacon text-warning me-2"></i>Espetinho (Kebab)</h5>
+            <p class="card-text">Espetinho de frango ou carne com farofa e vinagrete.</p>
+            <p class="price">R$ 11,00</p>
+            <button class="btn btn-comprar w-100" data-item="Espetinho (Kebab)" data-preco="11.00" data-ingredientes="Espetinho de frango ou carne com farofa e vinagrete." data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <span class="promo-badge">🥣 Saudável</span>
+          <img src="https://thumb-cdn.soluall.net/prod/shp_products/sp1280fw/99102be2-6101-4b69-ae39-10cd77a345b3/61b0fbe7-6ca8-4c83-80a9-1335ac1e09ff.jpg" class="card-img" alt="Açaí 300ml">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-ice-cream text-warning me-2"></i>Açaí 300ml</h5>
+            <p class="card-text">Açaí cremoso com banana e granola (pode adicionar toppings).</p>
+            <div class="price-container">
+              <span class="price-old">R$ 14,50</span>
+              <p class="price">R$ 12,50</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Açaí 300ml" data-preco="12.50" data-ingredientes="Açaí cremoso com banana e granola (pode adicionar toppings)." data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+ <div class="card">
+          <span class="promo-badge promo-discount">-35% OFF</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ndiPDjSvkdgjg35EHVP0GGdK62ZAhh_KVw&usqp=CAU" class="card-img" alt="Coca-Cola 2L">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-wine-bottle text-warning me-2"></i>Coca-Cola 2L</h5>
+            <p class="card-text">Refrigerante Coca-Cola 2 litros gelado, perfeito para compartilhar.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 12,00</span>
+              <p class="price">R$ 7,80</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Coca-Cola 2L" data-preco="7.80" data-ingredientes="Refrigerante Coca-Cola 2 litros gelado, perfeito para compartilhar." data-desconto="-35% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="promo-badge promo-discount">-25% OFF</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGc5HaykTdh-641rxmkEjDn4Txm30yF3ctY5Ib1TE2xIjwaQd5AQbrweGr&s=10" class="card-img" alt="Guaraná Antarctica 2L">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-wine-bottle text-warning me-2"></i>Guaraná Antarctica 2L</h5>
+            <p class="card-text">Guaraná Antarctica 2 litros bem gelado, sabor brasileiro autêntico.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 10,00</span>
+              <p class="price">R$ 7,50</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Guaraná Antarctica 2L" data-preco="7.50" data-ingredientes="Guaraná Antarctica 2 litros bem gelado, sabor brasileiro autêntico." data-desconto="-25% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="promo-badge">🍺 Gelada</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4IsWBf7pfnFsVB0_9Hq3iid_Uwa8-BuWc-g&usqp=CAU" class="card-img" alt="Cerveja Heineken">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-beer text-warning me-2"></i>Cerveja Heineken</h5>
+            <p class="card-text">Cerveja Heineken long neck 330ml, importada e super gelada.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 9,00</span>
+              <p class="price">R$ 7,20</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Cerveja Heineken" data-preco="7.20" data-ingredientes="Cerveja Heineken long neck 330ml, importada e super gelada." data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="promo-badge promo-discount">-20% OFF</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5fHIqH54zE9vaDO4cf9AwUCksvZHUT-Vcw&usqp=CAU" class="card-img" alt="Pizza Margherita">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-pizza-slice text-warning me-2"></i>Pizza Margherita</h5>
+            <p class="card-text">Pizza média com molho, mussarela, tomate e manjericão fresco.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 35,00</span>
+              <p class="price">R$ 28,00</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Pizza Margherita" data-preco="28.00" data-ingredientes="Pizza média com molho, mussarela, tomate e manjericão fresco." data-desconto="-20% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://recursos.clubedomalte.com.br/i/_mainstream/bud_mob.jpg" class="card-img" alt="Cerveja Budweiser">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-beer text-warning me-2"></i>Cerveja Budweiser</h5>
+            <p class="card-text">Cerveja Budweiser long neck 330ml, sabor premium americano.</p>
+            <p class="price">R$ 6,50</p>
+            <button class="btn btn-comprar w-100" data-item="Cerveja Budweiser" data-preco="6.50" data-ingredientes="Cerveja Budweiser long neck 330ml, sabor premium americano." data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="promo-badge promo-discount">-30% OFF</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjO6Ex3Uu7nnlp6X0CpYTRnRELLt4F3JT07g&usqp=CAU" class="card-img" alt="Suco Natural 500ml">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-glass-whiskey text-warning me-2"></i>Suco Natural 500ml</h5>
+            <p class="card-text">Suco natural de laranja, limão, abacaxi ou morango - 500ml.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 10,00</span>
+              <p class="price">R$ 7,00</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Suco Natural 500ml" data-preco="7.00" data-ingredientes="Suco natural de laranja, limão, abacaxi ou morango - 500ml." data-desconto="-30% OFF">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="promo-badge">🔥 Novo</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq0CZsr2SOC_3m-iSILubMlKTFn2DK9k6KOw&usqp=CAU" class="card-img" alt="Cerveja Corona">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-beer text-warning me-2"></i>Cerveja Corona</h5>
+            <p class="card-text">Cerveja Corona long neck 330ml com limão, estilo mexicano.</p>
+            <div class="price-container">
+              <span class="price-old">R$ 10,00</span>
+              <p class="price">R$ 8,50</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Cerveja Corona" data-preco="8.50" data-ingredientes="Cerveja Corona long neck 330ml com limão, estilo mexicano." data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="promo-badge promo-discount">-40% OFF</span>
+          <img src="https://img.deliverydireto.com.br/unsafe/origxorig/https://duisktnou8b89.cloudfront.net/img/items/60a6e30281961.png" class="card-img" alt="Combo Pizza + Refri">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-gifts text-warning me-2"></i>Combo Pizza + Refri</h5>
+            <p class="card-text">Pizza média + Refrigerante 2L - Escolha seu sabor favorito!</p>
+            <div class="price-container">
+              <span class="price-old">R$ 45,00</span>
+              <p class="price">R$ 27,00</p>
+            </div>
+            <button class="btn btn-comprar w-100" data-item="Combo Pizza + Refri" data-preco="27.00" data-ingredientes="Pizza média + Refrigerante 2L - Escolha seu sabor favorito!" data-desconto="0%">
+              <i class="fas fa-cart-plus me-2"></i>Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <div class="grid-3 footer-grid">
+        <div class="footer-col">
+          <h6 class="mb-3"><i class="fas fa-burger me-2"></i>Lanches & Bebidas</h6>
+          <p>Sabor e qualidade em cada mordida. Fazendo sua refeição mais feliz desde 2020! 🍔 🥤</p>
+        </div>
+        <div class="footer-col">
+          <h6 class="mb-3"><i class="fas fa-clock me-2"></i>Horário de Funcionamento</h6>
+          <p>Segunda a Sexta: 11h - 23h</p>
+          <p>Sábado e Domingo: Fechados</p>
+        </div>
+        <div class="footer-col">
+          <h6 class="mb-3"><i class="fas fa-map-marker-alt me-2"></i>Localização</h6>
+          <p>Rio Grande, RS - Brasil</p>
+          <p>(51) 99468-2268</p>
+          <p>contato@lanchesebebidas.com</p>
+        </div>
+      </div>
+      
+      <div class="map-section">
+        <h6 class="text-center mb-3"><i class="fas fa-map-marked-alt me-2"></i>Nossa Localização</h6>
+        <div id="map" class="map-container"></div>
+      </div>
+      
+      <hr class="footer-divider">
+      <div class="text-center">
+        <div class="social-links mb-3">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/juzeexs"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p class="mb-0">&copy; 2025 Lanches & Bebidas. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <div id="modal-overlay" class="modal-overlay hidden"></div>
+  
+
+<!---------------------------------------------------------------------------------------------------------------->
+<div id="modal-checkout" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <button class="btn-fechar" id="btn-fechar-modal">&times;</button>
+    
+    <h3 class="text-center mb-4" style="color: var(--primary);">Finalizar Pedido</h3>
+
+    <div id="etapa-1" class="etapa-ativo">
+      <h5>1. Endereço de Entrega</h5>
+      
+      <form  action="cardapio.html" method="post" id="form-endereco" class="form-checkout">
+        <input type="text" id="cep" name="cep" placeholder="CEP" required>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="rua" name="rua" placeholder="Nome da Rua" style="flex: 2;" required>
+            <input type="text" id="numero" name="numero" placeholder="Número" style="flex: 1;" required>
+        </div>
+        <input type="text" id="complemento" name="complemento" placeholder="Complemento (Opcional)">
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+            <input type="text" id="uf" name="uf" placeholder="UF" maxlength="2" style="width: 70px;" required>
+        </div>
+        <button type="button" class="btn-proximo" id="btn-ir-etapa-2">Próxima Etapa <i class="fas fa-arrow-right"></i></button>
+      </form>
+    </div>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+    <div id="etapa-2" style="display: none;">
+      <h5>2. Revisão e Pagamento</h5>
+      <div class="resumo-box">
+        <p><strong>Total a Pagar:</strong> R$ <span id="resumo-total">0.00</span></p>
+        <p><strong>Entregar em:</strong> <span id="resumo-endereco-texto"></span></p>
+      </div>
+      
+      <h6 class="mt-3">Como deseja pagar?</h6>
+      <div class="botoes-pagamento">
+        <button type="button" class="btn-pagar-opcao" id="btn-escolher-pix"><i class="fab fa-pix"></i> PIX</button>
+        <button type="button" class="btn-pagar-opcao" id="btn-escolher-cartao"><i class="fas fa-credit-card"></i> Cartão</button>
+      </div>
+    </div>
+
+    <div id="etapa-3-pix" style="display: none; text-align: center;">
+      <h5>3. Pagamento via PIX</h5>
+      <p>Escaneie o QR Code abaixo com o aplicativo do seu banco:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PagamentoLanchesEBebidas" alt="QR Code PIX" class="qr-code-img">
+      <button type="button" id="btn-finalizar-pix" class="btn-proximo mt-3">Confirmar Pagamento</button>
+    </div>
+
+    <div id="etapa-3-cartao" style="display: none;">
+      <h5>3. Dados do Cartão</h5>
+      <form id="form-cartao" class="form-checkout">
+        <input type="text" name="numero_cartao" placeholder="Número do Cartão" maxlength="19" required>
+        <input type="text" name="nome_titular" placeholder="Nome impresso no Titular" required>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" name="validade" placeholder="Validade (MM/AA)" maxlength="5" required>
+            <input type="text" name="cvv" placeholder="CVV" maxlength="3" required>
+        </div>
+        <input type="text" name="cpf_titular" placeholder="CPF do Titular" maxlength="14" required>
+        <input type="text" name="endereco_cobranca" placeholder="Endereço de Cobrança (Igual ao de entrega?)" required>
+        
+        <button type="button" id="btn-finalizar-cartao" class="btn-proximo mt-3">Finalizar Pagamento</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ol@v10.6.0/dist/ol.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
