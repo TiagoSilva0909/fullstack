@@ -129,17 +129,36 @@ document.getElementById('btn-ir-etapa-2')?.addEventListener('click', async () =>
 const formCartao = document.getElementById('form-cartao');
 if (formCartao) {
     formCartao.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const dadosCartao = Object.fromEntries(new FormData(formCartao).entries());
+        e.preventDefault(); // Impede a página de recarregar
         
-        // 1. Salva na tabela dados_cartao
-        await enviarParaBanco('dados_cartao.php', dadosCartao);
-        
-        // 2. Salva os itens na tabela pedidos
-        for (const item of carrinho.itens) {
-            await enviarParaBanco('pedidos.php', item);
-        }
+        // Altera o texto do botão para indicar carregamento
+        const btnFinalizar = document.getElementById('btn-finalizar-cartao');
+        const textoOriginal = btnFinalizar.innerText;
+        btnFinalizar.innerText = 'Processando...';
+        btnFinalizar.disabled = true;
 
-        mostrarAnimacaoObrigado();
+        try {
+            // 1. Captura os dados do formulário do cartão
+            const dadosCartao = Object.fromEntries(new FormData(formCartao).entries());
+            
+            // 2. Envia os dados do cartão para o banco (crie um arquivo dados_cartao.php para receber isso)
+            await enviarParaBanco('dados_cartao.php', dadosCartao);
+
+            // 3. Envia os itens do carrinho para a tabela de pedidos
+            for (const item of carrinho.itens) {
+                await enviarParaBanco('pedidos.php', item);
+            }
+
+            // 4. Exibe a animação de sucesso
+            mostrarAnimacaoObrigado();
+            
+        } catch (erro) {
+            console.error("Erro ao finalizar compra no cartão:", erro);
+            alert("Houve um erro ao processar seu pagamento. Tente novamente.");
+        } finally {
+            // Restaura o botão caso algo dê errado (ou se a tela não fechar)
+            btnFinalizar.innerText = textoOriginal;
+            btnFinalizar.disabled = false;
+        }
     });
 }

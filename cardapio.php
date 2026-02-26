@@ -503,7 +503,7 @@
         <input type="text" name="cpf_titular" placeholder="CPF do Titular" maxlength="14" required>
         <input type="text" name="endereco_cobranca" placeholder="Endereço de Cobrança (Igual ao de entrega?)" required>
         
-        <button type="button" id="btn-finalizar-cartao" class="btn-proximo mt-3">Finalizar Pagamento</button>
+        <button type="submit" id="btn-finalizar-cartao" class="btn-proximo mt-3">Finalizar Pagamento</button>
       </form>
     </div>
 
